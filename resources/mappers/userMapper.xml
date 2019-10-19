@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.easymall.mapper.UserMapper">
+	<select id="findUser" resultType="com.easymall.domain.User">
+		select * from user
+		<where>
+			<if test="id!=0">id = #{id}</if>
+			<if test="username!=null">and username = #{username}</if>
+			<if test="password!=null">and password = #{password}</if>
+			<if test="nickname!=null">and nickname = #{nickname}</if>
+			<if test="email!=null">and email = #{email}</if>
+		</where>
+	</select>
+	<insert id="addUser">
+		insert into user values (null,#{username},#{password},#{nickname},#{email});
+	</insert>
+</mapper>
